@@ -1,0 +1,227 @@
+CH-2:
+	=>spatial scales
+		-microscopic,meso and macroscopic.
+		-The microscopic scale refers to properties that are too small to resolve with the
+		naked eye and thus require the use of microscopic techniques for visualization.
+		This scale has become synonymous with networks reconstructed at the level of
+		individual neurons and synapses. 	
+		-the macroscopic scale refers to properties that can be resolved without the aid of microscopic methods. In 			connectomics,this scale most commonly refers to
+		analyses of structural and functional interactions between large-scale populations of neurons, such as those 			characterized with MRI, MEG or EEG.
+	=>Classes of Connectivity:
+		-structural
+		-functional
+		-effective
+		they also have sub-categories based on spatial scales(i.e micro,meso,macro).
+		-Highprecision, invasive methods such as single unit recordings
+		have high spatial and temporal resolution, but are not scalable to large-scale neural systems. Noninvasive 
+		methods,such as EEG and functional MRI, are scalable but have poor spatial resolution.
+		-Structural connectivity refers to the anatomical connections between neural elements.
+		-Functional connectivity is estimated at the level of measured
+		neurophysiological signals.
+		-Effective connectivity is defined at the neuronal level and explicitly aims to uncover the direct,causal 
+		influences that neural elements exert over each other’s activity. 	
+	=>Directionality:
+		-Structural connectivity is inherently directed, since each axon has a source and a target. However, some 
+		measures of structural connectivity, such as diffusion MRI,cannot resolve this directionality and only tell 
+		us whether two regions are connected or not.
+		-Functional connectivity can be either directed or undirected, depending on the
+		method used for measurement.
+		-Effective connectivity is always directed, as it is based on a model of causal interactions between neural 
+		systems.
+	=>Microscale Connectomics:(neuron to neuron level)
+	   	-structural connectivity
+			-difficult to capture using light.
+			-use of electron microscope turned the table.
+			-Once reconstruction(using microscopic methods) is complete, the structures need to be annotated so 
+			that the locations of individual synapses can be identified, thus forming the basis of a brain graph.
+			Reconstructing connectomes in this way is computationally demanding, timeconsuming, and labor 
+			intensive.Despite its poor scalability, electron microscopy remains a powerful approach for mapping 
+			neuronal connectivity within spatially confined circuits. 	
+			-In defining nodes, we must consider that neurons vary in their size, shape, and function, and that 
+			these variations can be used to distinguish between different classes of neurons. 
+	       ======Challenges:				
+			-Rough estimates suggest that there may be as many as 5000 different types of neuron in the mammalian 
+			brain.
+			-Given this heterogeneity, should each neuron be treated the same? Should we only represent 
+			connectivity between specific classes of neurons? Should we represent edges differently depending on 
+			the types of neurons that they connect? 	
+			-Defining edges in densely reconstructed neuronal networks also requires careful consideration.(as 
+			diffrent neurons have different lengths and spreads).
+ 			-Beyond simply determining the presence or absence of a synaptic contact 
+			between neurons, ambiguities also arise in estimating synaptic strength. 	
+			-An important consideration in microscale connectomics is that the location and spatial distribution 
+			of synapses can change rapidly as a function of development, experience-dependent plasticity, and 
+			sleep-wake cycles. 
+			-This variability suggests that the static picture obtained by a dense reconstruction may offer only a
+			 partial representation of the true complexity of synaptic connectivity.  	
+		-functional connectivity:
+			-The classic method for measuring synchronized neuronal activity at cellular resolution uses invasive
+			electrophysiology.
+			- In this analysis, each node represented a specific neuron and edges were computed as correlations 
+			in spiking activity.		
+ 			-Functional connectivity is quantified using measures of statistical dependence between neural time 
+			series. 
+			These time series can either be discrete (for example, spike trains) or continuous (for example, LFPs
+			(low field potentials)).
+			-Properties shown by Pearson correlation coefficient:
+				1=> correlation coefficient only quantifies linear dependencies.
+				2=> correlation coefficient is sensitive to indirect, “third-party” effects. These effects 
+				arise when two network nodes show correlated activity in the absence of a direct anatomical
+				connection because they are both connected to a third, intermediary node. 		 
+				-Partial correlations attempt to deal with this problem(i.e. indirect effects) by estimating 
+				the correlation between two nodes after removing variance that is shared with other system 
+				elements.
+ 				3=> correlation coefficient does not distinguish between the two principal coupling 
+				modeshypothesized to underlie brain function: phase coupling and amplitude coupling. 
+				-In Functional MRI, the measured signals are relatively slow and functional connectivity in 
+				this context is often measured as the correlation in amplitude fluctuations of the full 
+				signal, rather than just the amplitude envelope.A simple solution to this
+				problem is to perform a sliding window analysis.[the result is a time series of correlation 
+				coefficients estimated from overlapping windows (nonoverlapping windows can also be used)].
+  				4=>correlation coeeficient is undirected.
+				-Alternative measure of directed functional connectivity:Granger causality.
+				- For low-resolution methods such as functional MRI, variations in the speed of the 
+				hemodynamic response across different areas, coupled with the complex mapping between the 
+				recorded signal and underlying neuronal activity, can distort inferences about actual causal 
+				interactions occurring at the neuronal level (Friston et al., 2013). Models of effective 
+				connectivity can prove useful in this regard.		
+			-Values of the correlation coefficient are bounded between -1 and 1, and the polarity of the
+			coefficient tells us something about the type of interaction between nodes:a positive value implies 
+			cooperation and integration whereas a negative value implies antagonism and segregation.	
+			-popular method: calcium imaging
+			 a major drawback of the technique for the study of mammalian brains is that it can only sample a 
+			restricted, superficial patch of cortex at any given time.
+	=>Mesoscopic scale:
+		-Mesoscale connectomics typically uses microscopic methods with the aim of mapping connectivity between
+ 		neuronal populations or cell assemblies,rather than individual neurons.
+		-Neurons aggregate into functionally related, spatially circumscribed populations,which can range in size 
+		from cortical columns to larger cytoarchitectonic areas and subcortical nuclei. Each of these larger 
+		areas, which may comprise thousands or millions of cells, is treated as a single node.
+		-Using this coarser approach to defining nodes inevitably results in the loss of information
+		encapsulated by the interactions and connectivity patterns between individual neurons.
+		This loss of information is counterbalanced by an improved ability to map network structure over long 
+		distances. 
+		=>Structural connectivity:
+			-early method used to map:invasive tract tracing.
+			-Connectivity data for the Macaque (CoCoMac) database.
+		  ====Challenges:
+			-node definition.			
+			-estimation of connection strengths.
+	   	  =====
+			-Advances in light microscopy and the automation of tissue processing have enabled the construction 
+			of whole-brain mesoscale connectomes in mammalian brains using standardized methodologies.
+			-the zones of tracer uptake in each experiment did not always conform to the anatomical boundaries of 
+			the reference atlas. To get around this problem, a statistical model was used to parse the 
+			fluorescence signals emanating from injections that crossed regional borders. 
+			-Another method: injecting both an anterograde and retrograde tracer into different sites of the same 
+			animal,genetic labeling and confocal imaging,
+			-scientists parcellate the brain according to the region of interests and methodology followed.
+		=>Functional connectivity:
+			-method often used:use invasive electrophysiology.
+			-The position of nodes isdictated by the lattice-like geometry of the electrode array, meaning that 
+			the nodes do not necessarily correspond to functionally defined cell populations.
+			-Functional connectivity between the nodes of an ECoG array can be estimated 
+			using any one of a diverse array of different measures for quantifying the temporal dependence
+			between the recorded signals.
+			-The evolution of the networks over time can also be studied by using methods such as sliding
+			 window analysis, in which the signal time courses are divided into either overlapping or separate
+			 windows of arbitrary length, and network measures are estimated for each window.
+			 -The different coupling modes and plethora of methods available for characterizing dependencies
+			 between LFP signals afford a rich characterization of dynamic neural interactions,
+			 in both the time and frequency domains.
+			 -ECoG also offers the most direct measure of brain activity that can be acquired in living human 
+			 participants, but its invasive nature means that it can only be used in neurosurgical patients. It 
+			 also means that signals can only be sampled from limited, superficial areas of cortex. Deep brain 
+			 structures remain inaccessible.
+	=>Macroscale:
+		-invasive methods are not scalable.
+		-non-invasive are safe and scalable to the whole brain.
+		-The coarse spatial resolution of macroscale techniques demands that we aggregate measures over ever-larger 
+		populations of neurons, axons, and synapses.This reduces the precision with which we can define the nodes and 
+		edges of a brain network.
+					
+		-DEFINING NODES:
+		-A simple solution is to treat each measurement point as an individual node.(individual voxels)
+ 		-The advantage of this approach is that it does not entail any additional data processing or assumptions—the
+		data are analyzed at the native resolution of the imaging technique and no further aggregation or averaging 
+		of measurements is required.***However, there is no guarantee that the measurement points coincide with the 
+		borders of functionally specialized populations of cells. 
+		-Disadvantage:
+		partial volume effects can smear a focal signal over several nearby voxels, meaning that the effective 
+		spatial resolution may be coarser than the dimensions of an individual voxel. In this case, the connectivity 
+		between neighboring voxels may be spuriously inflated simply due to the measurement process.	
+		
+		-Rather than relying on measurement points, we could define nodes by coregistering our data to a validated 
+		parcellation scheme, such as one based on cytoarchitecture( specific areas of the cerebral cortex 
+		characterized by the arrangement of their cells and each associated with particular functions).
+		- In humans, Brodmann’s initial cytoarchitectonic parcellation has been mapped to a standard reference space 
+		(Van Essen et al., 2013)
+	
+		-An alternative to cytoarchitecture is to use the macroscopic landmarks visible 
+		with MRI, such as sulcal and gyral boundaries.
+		-Several such parcellations exist, based on either the delineation 
+		of all sulci, gyri, and major subcortical structures in a single individual (TzourioMazoyer et al., 2002), or 
+		the aggregation of many such parcellations created across a population of brains to generate a probabilistic
+		atlas.
+		A limitation of this approach is that cytoarchitectonic areas often cut across sulcal and gyral landmarks.
+		Furthermore, the regions that result from this kind of parcellation can show considerable variation in 
+		size,which can bias any subsequent estimates of connectivity.(bias: large region correlated to more no of 
+		other regions, averaging signals from large region result in higher SNR than the averaged time 
+		series representing smaller regions).
+		-One method for dealing with the problem of unequal node sizes is to parcellate the
+		brain into random parcels, each of which are approximately equal in spatial extent (Figure 2.13e; Fornito et 
+		al., 2010; Hagmann et al., 2007; Zalesky et al., 2010b). An advantage of this approach is that we can control 
+		node size,but there is no guarantee that the boundaries of the random parcels correspond to the actual 
+		borders of functional areas of the brain.
+		
+		-We can also use connectivity to define nodes. The logic behind this approach is that each functionally 
+		specialized area of the brain possesses a unique connectional fingerprint—a distinct pattern of afferent and 
+		efferent connections to other areas that, in large part, defines the function of that area.
+		
+		-Multivariate decomposition of functional MRI signals using techniques such as independent component analysis 
+		has been used to similar ends.
+		-A limitation is that some of these methods do not guarantee that putative nodes will comprise a spatially 
+		contiguous collection of voxels, since spatially separate regions can show similar connectivity profiles. 
+		
+		-A final approach is to define nodes according to some a priori criterion.
+		The advantage of these methods is that they are informed by measures of brain function and are tailored to 
+		address specific hypotheses about neural systems of interest.
+		
+		-At macroscale:Practically, it means that the correct parcellation for one individual will not necessarily be 
+		accurate for another individual.
+		
+		-Structural connectivity:
+			-primary method: diffusion MRI.
+		-Functional connectivity:
+			-Functional MRI generally offers a higher spatial resolution than EEG and MEG,but its temporal 
+			resolution is much lower.
+			It is also unclear whether an increase in the BOLD signal reflects 
+			a net increase of neuronal excitation in an area, a net increase in inhibition, or some combination 
+			of both.
+			-Functional connectivity in resting-state functional MRI is most commonly measured using the Pearson
+			 correlation coefficient between BOLD signal time courses recorded from different regions. 	
+			-it is common for these functional MRI signals to first undergo preprocessing to remove contributions 
+			from nonneuronal physiological sources of noise, such as variations in heart rate and respiration, as 
+			well as head motion.
+			-Many other coupling metrics have been used to quantify functional connectivity in these experiments, 
+			but studies of BOLD signals simulated on “ground truth” network architectures suggest that the 
+			correlation coefficient and partial correlation coefficient perform reasonably well in reconstructing 
+			some of the true underlying edge structure of the network.
+			-Limitation for resting state fmri:
+			 it is difficult to determine whether the spontaneous signal fluctuations are driven by intrinsic 
+			 neuronal dynamics or transient fluctuations in mental state and cognition.
+			-Advantage:
+			evidence of the robustness of these networks across people and time (Damoiseaux et al., 2006; De Luca 
+			et al., 2006), of their persistence across different states of consciousness and in different species 
+			(Vincent et al., 2007), and of high heritability of functional connectivity and network topology 
+			(Fornito et al., 2011b; Glahn et al., 2010), supports a strong contribution from intrinsic processes 
+			and underlying anatomical connectivity.
+			
+			-Measuring functional connectivity during active task performance can offer more precise control over 
+			participants’ mental states, and methods are available for isolating task-related functional 
+			connectivity from other potential causes of BOLD signal covariation, such as noise, intrinsic 
+			connectivity, and coactivation.
+			
+			== if the temporal structure of neural activity is important, then EEG or MEG is indicated; if the 
+			anatomical localization of neural activity is of interest, then functional MRI may be a more 
+			appropriate tool.

@@ -1,0 +1,210 @@
+COMPONENTS,CORES AND CLUSTERS.
+
+Connected components:
+   -same as in graph theory.
+   -Minimum spanning tree:
+   	binary network=unweighted network
+          =edge present or not.
+    -In brain networks, costs(for traveling from one node to another) will typically represent some function of the reciprocal 
+    of the CONNECTIVITY WEIGHT, such as 1/wij, since we want strongly weighted edges to index greater topological 
+    proximity.           
+    -The MST is not necessarily unique for a given network, unless that network is binary.
+    -WHY to analyse  or find MST:
+    By construction, the MST lacks many properties known to be important for the brain, such as clustering (Chapter 8) and 
+    modularity (Chapter 9). Examining its properties can nonetheless be useful, as it may represent a foundational backbone of 
+    the network (Alexander-Bloch et al., 2012; Stam et al., 2014). The MST is also useful when thresholding networks.By first 
+    finding the MST and adding edges to this backbone, we ensure that our resulting networks will be node-connected (Alexander-
+    Bloch et al.,2010). Thresholding procedures are covered in Chapter 11.
+  
+   -components and percolation:
+      -In graph theory, a giant component is a connected component that contains a large proportion of the total number of 
+      nodes, and whose size grows in proportion to N.
+      -The emergence of this large component occurs when the connection density passes the percolation threshold.
+      -The emergence of this large component occurs when the connection density passes the percolation threshold.
+      -If p is the probability of finding a connection between a pair of nodes, a giant component is likely to exist when
+       p > 1=N. In contrast, when p < 1=N, the graph is likely to be fragmented and contain manysmall components,
+      -At the transition point of p ¼ 1=N, the largest component is of order N2/3 nodes. These results are asymptotic, 
+      meaning that they only hold true for very large graphs.
+      -To build an intuition for these results, we can equivalently state that a giant component is likely to exist when
+      k > 1, where k is the mean degree. In other words, each node need only possess one link on average to form a 
+      wellconnected network. 
+      In a random graph,k and p are related as  k=p*(N-1).
+   -connected components in undirected components:
+   	-When the size of the largest component is equal to N, the network is node connected. When the size of the largest 
+   	component is less than N, the network is fragmented and is comprised of multiple components.
+  -connected components in directed components:
+  	-weakly connected: direction of edge not regarded.(every pair coonected through one or more interconnecting paths).
+  	-strongly connected :
+  	    a strongly connected component is a subset of nodes in which there exists a directed path that runs in both 
+  	    directions between every pair of its constituent elements
+           
+            -in-component:the set of vertices that can reach the strongly connected component but that are not reachable 
+            from it
+            -out-component:the set of vertices that can be reached from the strongly connected component but that cannot reach 
+              it. 
+            
+            IN COMPONENT---->STRONGLY CONNECTED COMPONENT---->OUT COMPONENT
+              
+            -characteristics od in-out,strongly connected components:
+             = All members of a strongly connected component will be part of each other’s out-component and each other’s in-
+             component.
+             = Any node that is in both the out-component and the in-component of an index node will be in the same strongly 
+             connected component, since paths between the two nodes exist in both directions.
+             = The intersection of a node’s out- and in-components defines the strongly connected component of that node.
+  -percolation and robustness:
+  	-percolation refers to processes that occur on a network as nodes and/or edges are added or deleted.        
+        -As we remove more nodes or edges from a network we often find that there is some critical percolation threshold,Pc, 
+        at which the network fragments. Above this threshold a large component emerges that includes a major fraction of 
+        nodes. Below this threshold, the network is fragmented into multiple smaller components.
+        -We can analyze percolation processes on networks to simulate the effect of progressive damage to individual brain 
+        regions or connections that may result from disease or injury.   
+	
+	-Two types of attack on the network are often simulated in these analyses: random and targeted.
+	  -random attack: involves the removal of nodes or edges with uniform probability.
+	  -targeted attack: involves the removal of network elements according to some prespecified criterion, such as node 
+	  degree or some other index of topological centrality.
+	
+	-The robustness of a network to damage depends strongly on its degree distribution.
+  	-classes of networks:
+  		-single scale.
+  		-scale free.
+  		-broad scale.
+	Attack effect in single and scale free:
+	   	Random attack:
+	   	  scale free lower damage than single scale.
+	   	Targeted attack:
+	   	  single scale lower damage than scale free.  	  		 
+  	--for ch-4:brain networks are neither single scale nor scale free, but may instead show a BROAD-SCALE degree 
+  	distribution.
+	        -these networks showed comparable resilience to random attack,when compared with random and scale-free 
+	        networks. However, the brain was more resilient to targeted attack than the scale-free network
+  	
+  	-Fragmentation is not the only measure that can be used to examine network resilience to attack.
+  	-other meausres:
+  	     - average path-lenght and related measures
+  	     - computational models of neuronal dynamics simulated on structural network architectures to examine the 
+  	     dynamical consequences of lesions to specific nodes.	              
+        
+  -Components and group differences in networks:
+  	-applications of the component analysis.
+  	            
+  -Core-periphery organisation:
+	Just connected components doesn't convey the infomation regarding the core nodes(backbone of the network) as the brain 
+	comprise a large component that spans most nodes.
+	-Properties shown by the networks with a clear distinction between core and topologically peripheral nodes:-
+		- Core nodes should occupy a topologically central position in the network.
+		-Core nodes should be highly interconnected with each other.
+		-Peripheral nodes should be (at least) moderately connected to core nodes, but sparsely interconnected with 
+		each other.
+	- The high interconnectivity of core nodes also promotes degeneracy and thus robustness to node failures.
+	Degeneracy refers to the capacity of different elements of a system to perform the same function, and can be 	
+	distinguished from redundancy, which involves the repetition of identical system elements. 	     
+       
+       -MAXIMAL CLIQUES:
+         NOTE:
+          A maximal clique is a clique that cannot be extended by including one more adjacent vertex.
+          clique: is a subset of vertices of an undirected graph such that its induced subgraph is complete; that is, every 
+          two distinct vertices in the clique are adjacent. 
+        - However, defining the core of a network based on an analysis of maximal cliques will result in a very narrow 
+        definition, since maximal cliques tend to be small in most real-world networks, particularly if these networks are 
+        sparse. 
+        
+      -k-Cores and s-Cores:
+         =enables a more generalized characterization of network core structure than  consideration of its cliques.
+         - In this approach, nodes with degree less than k are removed until all remaining nodes in the network have at least
+         k connections.
+       
+         -How k-core decomposition works:(for UNWEIGHTED graph) 
+          1)  k=1,remove all nodes with degree=1,update the remaining nodes,keep removing till the remaining nodes have 
+           degree>1.
+          2)  increment k,repeat the procedure again with new k-value.
+          Thus each node is giving a core value.Higher the value,the node is more central.
+       
+        -a measure of node coreness—is also an index of centrality since the core is, by definition, a subset of 
+        topologically central vertices. However not all centrality measures index coreness.
+      
+      -s-Cores:for weighted graophs
+         The k-core decomposition algorithm can be generalized to weighted networks by replacing k with node 
+         strength(the same 's').             
+	- An s-core decomposition defines the s-core of a network as comprising all nodes with strength greater than s, where 
+	s is a threshold value defined by the minimum strength in the subgraph.
+        - As 's' is not related to degree  of a node (k-cores and s-cores differ).
+        -Both k-core and s-core decomposition can be generalized to directed networks by separately considering cores for in-
+        degree/strength and out-degree/strength.(found through experiments).
+        
+  -Model based decomposition:
+  	-Clique and core decompositions offer a data-driven method for identifying putative network cores. An alternative approach 
+  	is to pose a model of an idealized core-periphery structure, and quantify the extent to which this model structure is 
+  	expressed in the observed network.
+  	-In language of block modeling, the core-core region is called a 1-block (all Aij = 1); the core-periphery region is an 
+  	imperfect 1-block; and the periphery-periphery region is a 0-block (all Aij= 0).
+  	-Once a model is selected, our goal is to see how well the model fits the experimental data. To this end, we must find a 
+  	class vector, c, of length N, that defines the class to which each node belongs. 
+  	-From this vector, we can construct a so-called pattern matrix in which the elements δ ij=1 if ci=1 or cj=1, and δij=0 
+  	otherwise (note that this rule can be varied to accommodate other models of core-periphery organization). We can then
+  	 compute the similarity between our pattern matrix and empirical adjacency matrix. 
+  	-This method leads to null-model(ch-10).
+  	-This model-based approach can be extended to handle directed and weighted net-works.
+  	-However, one limitation is that it assumesa fixed core size.
+  	-To overcome these limitations, Rombach et al. (2014) developed a general method to account for cores of different sizes 
+  	and quality, where quality refers to the sharpness of the transition between core and periphery. Specifically, they define 
+  	the class vector c* according to a transition function.
+ -Knotty Centrality:
+ 	-as the previous methods used degree we may miss on the central nodes with same degree as the periphery.
+	-in this method they use betweenness centrality as a measure for the core.
+	-knotty centrality defines the core of a network as a highly interconnected subset of nodes that mediates a high 
+	proportion of shortest paths in the network.  		
+  	-it is calculated for each sub-graph possible(methods have been developed to minimize the labour).
+	-Shanahan and Wildie (2012) found that knotty centrality offers a more inclusive definition of the core of a brain network 
+	compared to other methods.
+ -BOW-Tie structure:
+	-for directed networks.
+	-In such a structure, peripheral nodes are categorized as either feed-in or feed-out. Feed-in nodes act as sources or 
+	initiation points for edges and paths that project into the core, whereas feed-out nodes act as targets or sinks for edges 
+	and paths that project out of the core. Nodes in the core tend to be reciprocally connected.
+ 
+ -Rich Club properties of a network:
+ 	- Un-weighted rich-club coefficient.
+ 	  As stated in 2004:
+ 	   The rich-club coefficient is the connection density of the subgraph of nodes with rank less than r or, conversely, the 
+ 	   subgraph of nodes with degree higher than the level specified by r.
+ 	  Definition was modified to avoid ranking in 2006:
+ 	    -They define the rich-club coefficient at each level of degree.
+  	  -as degree increses rich-club also increases,there fore people have proposed to normalize the coefficients.    	 	   -mention of null hypothesis.
+  	- Weigthed rich-club coefficient:
+  	   The basic procedure is as follows (Opsahl et al., 2008):
+		1. Rank nodes according to some measure of prominence or “richness,”such as degree or strength.
+		2. Apply a threshold to define a subgraph that retains only nodes (and their connections) that are higher than a 
+		certain rank.
+		3. Compute the total sum of weights on the links between the nodes comprising this subgraph.
+		4. Compute the sum of weights for the same number of edges, but this time for the most highly weighted edges in the 
+		entire network.
+		5. Take the ratio of the quantities computed in steps 3 and 4.
+
+  	 -The unweighted rich-club coefficient measures whether the richest, high-degree nodes of the network are also densely 
+  	 connected with each other. The weighted coefficient assesses whether the most highly weighted edges in the network are 
+  	 found on the links between the richest nodes.   
+  	        -Alternate methods for the computation of weigthed rich club coeeficient are proposed but the previous method is 
+  	        widely accepted and used.
+  	        
+  	  - as done in unweighted ,here also normalization of coefficient is done.      
+  	 -some researchers found rich-club organisation through unweighted but not by using weighted.(**ALERT**)         
+  =============
+  -Rich clubs in brain networks:
+ ====
+ -Assortativity:
+   assortative mixing is a preference for a network's nodes to attach to others that are similar in some way.
+   -Network assortativity is typically examined in relation to degree, although in principle it can be measured in relation to any 
+   other nodal property.
+   -It is easy to see how rich-club organization can be confused with assortativity:
+	the rich-club coefficient measures the density of connectivity between high degree nodes, whereas assortativity measure
+	the tendency of nodes with similar degree to connect to each other.
+        -The difference between these measures is that assortativity, when specified in terms of degree, describes a relationship 
+        between nodes across all levels of k. The rich-club coefficient is only concerned with connectivity amongst nodes with
+        degree greater than k and makes no statement about the connectivity of nodes with lower degree. 
+   - We can thus conclude that a network with strong core-periphery organization will also have rich-club structure, and may or may 
+   not be positively assortative. Moreover, assortativity is not a necessary condition for formation of a rich-club.
+
+   
+     	   
+ 	      

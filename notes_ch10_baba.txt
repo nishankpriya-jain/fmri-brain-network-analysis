@@ -1,0 +1,119 @@
+NULL MODELs:
+ In graph theory, a null model is a model of a network that establishes expectations under the null hypothesis.
+ 
+ - Ideally, the null network should be matched to our observed brain network for all uninteresting properties, 
+ leaving only the properties of interest to differ. Otherwise, a trivial,unmatched property can influence 
+ the measure we seek to normalize, and thus confound any subsequent analyses.
+ 
+ - Generating null networks that match all properties of an empirical network except for the one we seek to normalize 
+ is difficult in practice. It is therefore typical to match only basic properties, such as network size, connection density,
+ and degree distribution.These kinds of null networks can be computed using either generative models, where a network is grown by
+ adding connections to a set of nodes, or randomization strategies, where the observed network is randomly rewired according to a 
+ set of rules.
+ 
+ ---GENERATIVE null models:
+  Ways of considering a generative null model:
+  1)(made by chance) we could create a model network with the same number of nodes and edges, but this time with edges drawn between 
+  nodes completely at random (a so-called Erdős-Rényi graph). We would then measure key properties of this network, such as its 
+  degree distribution, clustering coefficient, path length, and so on, and compare these values to those computed in the empirical 
+  brain network. If the two sets of measures match, our analysis suggests that the brain is wired completely at random.
+  2)They define expectations for network organization under a specific hypothesis. The hypothesis is determined by the rules(like 
+  random connectivity) of the generative model.
+ 
+  Viewing generative models from this perspective allows us to define two major applications in the analysis of brain networks:
+  1)to uncover critical constraints on brain network wiring.
+    - In this application, we aim to specify a model that will accurately reproduce the topological properties observed in the brain.
+  2)to set expectations under the null hypothesis
+    - Rather than attempting to model all relevant features of brain network organization, we may simply ask whether a particular 
+    property is expressed in the brain to a greater extent than expected by chance.
+ 
+ GENERATIVE MODELS FOR BRAIN NETWORKS:
+  ------- 
+ Erdős-Rényi Networks:
+   -In this model, each node has a uniform probability of being connected.
+   - In Gilbert’s variation, Erdős-Rényi networks are characterized by two parameters, the number of nodes in the network, N, and 
+   the probability, p, that a connection is found between an arbitrary pair of nodes. 
+   -The advantage of the Erdős-Rényi null model is that it is simple to generate, and analytic expressions exist for computing many 
+   commonly used topological metrics, such as clustering and path length.   
+   - the Erdős-Rényi network does not provide a very good model of many real-world systems, lacking basic properties such as a small-
+   world organization and a heterogeneous degree distribution that allows for the presence of highly connected hubs. 
+ 
+ Watts-Strogatz Networks:
+     <k>=a desired mean node degree.
+   - The nodes are equidistantly positioned in two-dimensional space along a ring, such that each node has exactly two immediate 
+   neighbors. We then add N<k>/2 connections to construct a lattice network. In particular, for each node, connections are drawn 
+   between it and its hki closest neighbors, <k>/2 on each side. 
+   The final step is to randomly rewire each connection with probability pWS. Rewiring is performed in such a way that avoids self-
+   loops and connection duplication.
+
+ Barabási-Albert Networks:
+   -create models of networks with more realistic, scale-free degree distributions.
+   -Node degrees grow with iterations in a “rich get richer” manner
+   -Crucially, these v connections are not randomly assigned to existing nodes. Instead,
+   the probability that a connection is assigned to an existing node is proportional to its current nodal degree.
+ 
+  Erdős-Rényi networks, the simplest of the three, allow us to formalize the concept of random networks. They can be generated to a
+  prescribed size, connection density, and mean node degree. Watts-Strogatz networks can also be generated to satisfy these 
+  specifications, but additionally display small-world organization. Finally, Barabási-Albert networks display a scale-free degree 
+  distribution, but are not necessarily small-world networks. 
+   
+ -NULL NETWORKS FROM REWIRING CONNECTIONS:
+  	-- null networks generated through an iterative process in which an observed network is rewired to generate a random 
+	   topology,albeit with specific constraints. 
+	--these networks are not completely random, like the Erdos-Renyi model, but they are randomized with respect to an initial, 
+	empirically determined starting point.
+    -Maslov-Sneppen Rewiring:
+       - The rewired network will have the same number of nodes, same number of edges,and same degree sequence as the original 
+       network, with all other properties being randomized.
+       -The Maslov-Sneppen algorithm uses an iterative rewiring procedure. At each iteration, we randomly select two connections, 
+       (u1, u2) and (u3, u4). We then move (rewire) these links to introduce two new connections (u1, u 4) and (u2, u3). If one or 
+       both of these new connections already exist, we abandon the iteration and randomly select another pair of connections.
+ 
+ -Rewiring Connections in Weighted and Signed Networks:
+     Rubinov and Sporns algorithm (generalization of Maslov-Sneppen Rewiring):
+     Steps:
+     1)The first step involves an iterative connection-switching rule. At each iteration, we randomly select four nodes such that 
+     we have positive connections (u1, u2) and (u 3, u4), and negative connections (u1, u3) and (u2, u4). We then reverse the signs 
+     of these four connections.
+     2)The second step involves randomizing the connection weights so that the positive and negative strengths of each node are 
+     approximately preserved.
+      
+ -Lattice Null Networks:
+    When embedded in Euclidean space, lattice networks appear as tiling patterns or grids, since most of their connections are 
+    between spatially proximal nodes
+    NOTE:NEED of lattice null networks:
+     Lattice networks are highly clustered with long path lengths,whereas random networks have low clustering and short path 
+     lengths.
+    - By selectively implementing only those rewiring steps that result in a connectivity matrix with more connections clustered 
+    around the matrix diagonal, we can generate random networks with lattice structure.
+ -Spatial Embedding:
+    The spatial locations of the nodes of a connectome are  physically constrained by the geometry of the space in which they are
+    embedded.
+  
+   
+    
+
+    
+    
+    
+    
+
+    
+     
+     
+     
+     
+      
+          
+ 	  	
+   
+   
+   
+
+
+ 
+
+
+  
+
+
