@@ -16,6 +16,65 @@ vector<int> getUnweightedDegree(vector<double> g[100],int n){
    return degree;
 }
 
+vector<double> getGmOfTriangles(vector<double> graph[100],int n,int m)
+{
+    int i,j,k;
+    double sum=0;
+    vector<double> ans;
+    for(i=0;i<n;i++)
+    {
+        sum=0;
+        for(j=0;j<m;j++)
+        {
+            for(k=0;k<m;k++)
+            {
+                if(i!=j&&j!=k&&k!=i)
+                {
+                    if(graph[i][j]&&graph[j][k]&&graph[i][k])
+                    {
+                        sum+=cbrt(graph[i][j]*graph[j][k]*graph[i][k]);
+                    }
+                }
+            }
+        }
+        ans.push_back(sum);
+    }
+    return ans;
+}
+vector<int> getDirectedTriangles(vector<double> graph[20],int n,int m)
+{
+    int i,j,a[n][m],k;
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<m;j++)
+        {
+            if(graph[i][j]!=0.0)
+                a[i][j]=1;
+            else
+                a[i][j]=0;
+        }
+    }
+    int sum=0;
+    vector<int> ans;
+    for(i=0;i<n;i++)
+    {
+        sum=0;
+        for(j=0;j<m;j++)
+        {
+            for(k=0;k<m;k++)
+            {
+                if(i!=j&&j!=k&&k!=i)
+                {
+                    sum+=(a[i][j]+a[j][i])*(a[i][k]+a[k][i])*(a[j][k]+a[k][j]);
+                }
+            }
+        }
+        sum/=2;
+        ans.push_back(sum);
+    }
+    return ans;
+}
+
 
 
 //---------------------------
@@ -49,7 +108,7 @@ int main(){
             graph[i].push_back(x);
         }
     }
-    vector<double> triangle_val= getTriangle(graph,n);
+    vector<double> triangle_val= getGmOfTriangles(graph,n, n);
     vector<int>degree=getUnweightedDegree(graph,n);
     //---------------------------------
     double clustering_coefficient=getClusteringCoefficient(n,graph,degree,triangle_val); 
